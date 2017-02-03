@@ -4,6 +4,8 @@ class DefineVariableViewController: UIViewController {
 
     // Define any instance variables here
     
+    var result = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -24,7 +26,7 @@ class DefineVariableViewController: UIViewController {
         let data2 = Data(buffer: UnsafeBufferPointer(start: data1, count: data1.count))
         let data3 = NSString(data: data2, encoding: String.Encoding.utf8.rawValue)
         let formattedText = (data3?.capitalized)!
-        let formattedTextArray = [formattedText]
+        result = [formattedText]
         
         // TODO: Transfer the values in formattedTextArray to the textToDisplay property in our prepare for segue function
         // Hint: How would you store a value if you wanted to access it across different functions?
@@ -32,12 +34,12 @@ class DefineVariableViewController: UIViewController {
 
         matchTheArrayHere()
     }
-    
+        
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationVC = segue.destination as? NiceWorkViewController {
             
             // TODO: Assign the destinationVC's textToDisplay property to what was stored in formattedTextArray above
-            destinationVC.textToDisplay = [] // Change this!
+            destinationVC.textToDisplay = result // Change this!
         }
     }
 }
